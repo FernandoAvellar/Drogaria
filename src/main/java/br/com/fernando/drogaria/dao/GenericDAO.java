@@ -90,4 +90,24 @@ public class GenericDAO<Entidade> {
 			sessao.close();
 		}	
 	}
+	
+	public void editar(Entidade entidade){
+		Session sessao = HibernateUtil.getFabricadesessoes().openSession();
+		
+		Transaction transacao = null;
+		try {
+			transacao = sessao.beginTransaction();
+			sessao.update(entidade);
+			transacao.commit();
+			
+		} catch (RuntimeException erro) {
+			if (transacao != null) {   	
+				transacao.rollback();
+			}
+			throw erro;				
+		}
+		finally {
+			sessao.close();
+		}	
+	}
 }

@@ -45,8 +45,9 @@ public class EstadoDAOTest {
 	}
 	
 	@Test
+	@Ignore
 	public void excluir(){
-		Long codigo = 3L;
+		Long codigo = 10L;
 		EstadoDAO estadoDAO = new EstadoDAO();
 		Estado estado = estadoDAO.buscar(codigo);
 		if(estado != null) {
@@ -56,5 +57,30 @@ public class EstadoDAOTest {
 		} else {
 			System.out.println("Nenhum registro de estado encontrado!");
 		}	
-	}	
+	}
+	
+	@Test
+	@Ignore
+	public void editar(){
+		Long codigo = 10L;
+		EstadoDAO estadoDAO = new EstadoDAO();
+		Estado estado = estadoDAO.buscar(codigo);
+		
+		if (estado != null){
+			System.out.println("Registro de Estado antes da edição:");
+			System.out.println(estado.getCodigo() + " - " + estado.getSigla() + " - " + estado.getNome());
+			
+			estado.setNome("São Paulo");
+			estado.setSigla("SP");
+			estadoDAO.editar(estado);
+			
+			System.out.println("Registro de Estado editado:");
+			System.out.println(estado.getCodigo() + " - " + estado.getSigla() + " - " + estado.getNome());
+		} else {
+			System.out.println("Nenhum registro de estado encontrado!");
+			
+		}
+		
+		
+	}
 }

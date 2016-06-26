@@ -44,7 +44,7 @@ public class FabricanteDAOTest {
 
 	@Test
 	public void excluir(){
-		Long codigo = 2L;
+		Long codigo = 3L;
 		FabricanteDAO fabricanteDAO = new FabricanteDAO();
 		Fabricante fabricante = fabricanteDAO.buscar(codigo);
 
@@ -53,6 +53,27 @@ public class FabricanteDAOTest {
 			System.out.println("Registro de fabricante removido:");
 			System.out.println(fabricante.getCodigo() + " - " + fabricante.getDescricao());
 		} else {
+			System.out.println("Nenhum registro de fabricante encontrado!");
+		}
+	}
+	
+	@Test
+	@Ignore
+	public void editar(){
+		Long codigo = 3L;
+		FabricanteDAO fabricanteDAO = new FabricanteDAO();
+		Fabricante fabricante = new FabricanteDAO().buscar(codigo);
+		
+		if(fabricante != null){
+			System.out.println("Registro de fabricante antes da edição:");
+			System.out.println(fabricante.getCodigo() + " - " + fabricante.getDescricao());
+			
+			fabricante.setDescricao("Orion");
+			fabricanteDAO.editar(fabricante);
+			
+			System.out.println("Registro de fabricante editado:");
+			System.out.println(fabricante.getCodigo() + " - " + fabricante.getDescricao());
+		}else {
 			System.out.println("Nenhum registro de fabricante encontrado!");
 		}
 	}

@@ -11,7 +11,7 @@ public class FabricanteDAOTest {
 	@Ignore
 	public void salvar() {
 		Fabricante fabricante = new Fabricante();
-		fabricante.setDescricao("FarmaLab");
+		fabricante.setDescricao("NetFarma");
 		FabricanteDAO fabricanteDAO = new FabricanteDAO();
 		fabricanteDAO.salvar(fabricante);
 	}

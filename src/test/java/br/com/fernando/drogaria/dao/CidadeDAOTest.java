@@ -18,7 +18,7 @@ public class CidadeDAOTest {
 		Estado estado = estadoDAO.buscar(1L);
 
 		Cidade cidade = new Cidade();
-		cidade.setNome("Niterói");
+		cidade.setNome("Lavras");
 		cidade.setEstado(estado);
 
 		CidadeDAO cidadeDAO = new CidadeDAO();
@@ -61,7 +61,7 @@ public class CidadeDAOTest {
 	@Test
 	@Ignore
 	public void editar(){
-		Long codigoCidade = 4L;
+		Long codigoCidade = 5L;
 		Long codigoEstado = 3L;
 		
 		CidadeDAO cidadeDAO = new CidadeDAO();

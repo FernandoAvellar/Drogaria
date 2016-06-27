@@ -12,8 +12,8 @@ public class EstadoDAOTest {
 	@Ignore
 	public void salvar(){
 		Estado estado = new Estado();
-		estado.setNome("Minas Gerais");
-		estado.setSigla("MG");
+		estado.setNome("Pará");
+		estado.setSigla("PA");
 		
 		EstadoDAO estadoDAO = new EstadoDAO();
 		estadoDAO.salvar(estado);

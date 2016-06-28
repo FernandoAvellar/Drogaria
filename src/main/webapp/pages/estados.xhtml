@@ -9,6 +9,9 @@
 	<title>Estados</title>
 </h:head>
 <h:body>
+<!--> Caixa que poderá ser usada pra exibir mensagens do sistema -->
+	<p:growl id="mensagem" />  
+	
 	<h:form>
 		<p:panel h:header="Estados - Listagem">
 			<p:dataTable emptyMessage="Nenhum registro encontrado."
@@ -35,7 +38,7 @@
 			</h:panelGrid>
 			
 			<h:panelGrid columns="2">
-				<p:commandButton value="Salvar" />
+				<p:commandButton value="Salvar" actionListener="#{estadoBean.salvar()}" update=":mensagem"/>
 				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
 			</h:panelGrid>		
 		</h:form>

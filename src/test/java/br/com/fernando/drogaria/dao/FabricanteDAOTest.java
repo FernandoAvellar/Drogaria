@@ -1,6 +1,7 @@
 package br.com.fernando.drogaria.dao;
 
 import java.util.List;
+
 import org.junit.Ignore;
 import org.junit.Test;
 import br.com.fernando.drogaria.domain.Fabricante;
@@ -11,7 +12,7 @@ public class FabricanteDAOTest {
 	@Ignore
 	public void salvar() {
 		Fabricante fabricante = new Fabricante();
-		fabricante.setDescricao("NetFarma");
+		fabricante.setDescricao("Farmaquimica");
 		FabricanteDAO fabricanteDAO = new FabricanteDAO();
 		fabricanteDAO.salvar(fabricante);
 	}
@@ -76,6 +77,22 @@ public class FabricanteDAOTest {
 		}else {
 			System.out.println("Nenhum registro de fabricante encontrado!");
 		}
+	}
+	
+	@Test
+	@Ignore
+	public void merge() {
+		//Save
+//		Fabricante fabricante = new Fabricante();
+//		fabricante.setDescricao("NewLab");
+//		FabricanteDAO fabricanteDAO = new FabricanteDAO();
+//		fabricanteDAO.merge(fabricante);
+		
+		//Update
+		FabricanteDAO fabricanteDAO =  new FabricanteDAO();
+		Fabricante fabricante = fabricanteDAO.buscar(4L);
+		fabricante.setDescricao("NewFarma");
+		fabricanteDAO.merge(fabricante);
 	}
 
 }

@@ -1,4 +1,4 @@
-package br.com.fernando.util;
+package br.com.fernando.drogaria.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;

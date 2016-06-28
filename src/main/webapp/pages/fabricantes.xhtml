@@ -6,32 +6,28 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Estados</title>
+	<title>Fabricantes</title>
 </h:head>
 <h:body>
 	<h:form>
-		<p:panel h:header="Estados - Listagem">
+		<p:panel h:header="Fabricantes - Listagem">
 			<p:dataTable emptyMessage="Nenhum registro encontrado."
 				paginator="true">
 				<f:facet name="header">
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();" />
 				</f:facet>
-				<p:column headerText="Nome"></p:column>
-				<p:column headerText="Sigla"></p:column>
+				<p:column headerText="Descrição"></p:column>
 				<p:column headerText="Opções"></p:column>
 			</p:dataTable>
 		</p:panel>	
 	</h:form>
 	
-	<p:dialog header="Estados - Cadastro" widgetVar="dialogo" draggable="false" 
+	<p:dialog header="Fabricantes - Cadastro" widgetVar="dialogo" draggable="false" 
 									resizable="false" modal="true" closable="false">
 		<h:form>
-			<h:panelGrid columns="2">
-				<p:outputLabel value="Nome:" />
+			<h:panelGrid>
+				<p:outputLabel value="Descrição:" />
 				<p:inputText maxlength="50" size="30" />
-			
-				<p:outputLabel value="Sigla" />
-				<p:inputText maxlength="2" size="10" />
 			</h:panelGrid>
 			
 			<h:panelGrid columns="2">

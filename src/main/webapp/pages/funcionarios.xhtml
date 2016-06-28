@@ -6,34 +6,41 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Estados</title>
+	<title>Funcionarios</title>
 </h:head>
 <h:body>
 	<h:form>
-		<p:panel h:header="Estados - Listagem">
+		<p:panel h:header="Funcionarios - Listagem">
 			<p:dataTable emptyMessage="Nenhum registro encontrado."
 				paginator="true">
 				<f:facet name="header">
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();" />
 				</f:facet>
 				<p:column headerText="Nome"></p:column>
-				<p:column headerText="Sigla"></p:column>
+				<p:column headerText="CPF"></p:column>
+				<p:column headerText="Data de Admissão"></p:column>
+				<p:column headerText="Carteira de trabalho"></p:column>
 				<p:column headerText="Opções"></p:column>
 			</p:dataTable>
 		</p:panel>	
 	</h:form>
 	
-	<p:dialog header="Estados - Cadastro" widgetVar="dialogo" draggable="false" 
-									resizable="false" modal="true" closable="false">
+	<p:dialog header="Funcionarios - Cadastro" widgetVar="dialogo" draggable="false" 
+								resizable="false" modal="true" closable="false">
 		<h:form>
 			<h:panelGrid columns="2">
-				<p:outputLabel value="Nome:" />
-				<p:inputText maxlength="50" size="30" />
-			
-				<p:outputLabel value="Sigla" />
-				<p:inputText maxlength="2" size="10" />
+				<p:outputLabel value="Pessoa" />
+				<p:selectOneMenu filter="true">
+					<f:selectItem itemValue="" itemLabel="Selecione uma pessoa"/>
+				</p:selectOneMenu>
+					
+				<p:outputLabel value="Data de admissão" />
+				<p:calendar/>
+				
+				<p:outputLabel value="Carteira de trabalho" />
+				<p:inputText maxlength="15" size="20"/>
 			</h:panelGrid>
-			
+					
 			<h:panelGrid columns="2">
 				<p:commandButton value="Salvar" />
 				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />

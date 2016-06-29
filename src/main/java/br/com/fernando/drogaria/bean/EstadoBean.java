@@ -1,8 +1,11 @@
 package br.com.fernando.drogaria.bean;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.ActionEvent;
 import org.omnifaces.util.Messages;
 import br.com.fernando.drogaria.dao.EstadoDAO;
 import br.com.fernando.drogaria.domain.Estado;
@@ -13,6 +16,7 @@ import br.com.fernando.drogaria.domain.Estado;
 public class EstadoBean implements Serializable {
 	
 	private Estado estado;
+	private List<Estado> estados;
 	
 	public Estado getEstado() {
 		return estado;
@@ -21,7 +25,25 @@ public class EstadoBean implements Serializable {
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
-
+	
+	public List<Estado> getEstados() {
+		return estados;
+	}
+	
+	public void setEstados(List<Estado> estados) {
+		this.estados = estados;
+	}
+	
+	@PostConstruct //método que será chamado assim que o EstadoBean for construído
+	public void listar(){
+		try {
+			estados = new EstadoDAO().listar();		
+		} catch (RuntimeException erro) {
+			Messages.addGlobalError("Ocorreu um erro ao tentar listar os etsados");
+			erro.printStackTrace();
+		}
+	}
+	
 	public void novo(){
 		estado = new Estado();
 	}
@@ -29,8 +51,9 @@ public class EstadoBean implements Serializable {
 	public void salvar(){	
 		try {
 			EstadoDAO estadoDAO = new EstadoDAO();
-			estadoDAO.salvar(estado);
+			estadoDAO.merge(estado);
 			novo(); //Limpa o objeto
+			listar();
 			Messages.addGlobalInfo("Estado salvo com sucesso");
 		}catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao salvar o estado");
@@ -38,4 +61,20 @@ public class EstadoBean implements Serializable {
 		}
 	}
 	
+	public void excluir(ActionEvent evento){
+		estado = (Estado) evento.getComponent().getAttributes().get("estadoSelecionado");
+		try {
+			new EstadoDAO().excluir(estado);
+			listar();
+			Messages.addGlobalInfo("Estado excluído com sucesso");
+			
+		} catch (RuntimeException erro) {
+			Messages.addGlobalError("Ocorreu um erro ao excluir o estado");
+			erro.printStackTrace();
+		}	
+	}	
+	
+	public void editar(ActionEvent evento){
+		estado = (Estado) evento.getComponent().getAttributes().get("estadoSelecionado");	
+	}
 }

@@ -19,7 +19,9 @@
 				
 				<f:facet name="header">
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();" 
-						actionListener="#{fabricanteBean.novo}" update=":formCadastro:painel" />
+						actionListener="#{fabricanteBean.novo}" update=":formCadastro:painel">
+						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+					</p:commandButton>
 				</f:facet>
 				
 				<p:column headerText="Descrição" sortBy="#{fabricante.descricao}" filterBy="#{fabricante.descricao}">
@@ -35,7 +37,8 @@
 					<p:commandButton icon="ui-icon-pencil" actionListener="#{fabricanteBean.editar}"
 							oncomplete="PF('dialogo').show();" update=" :formCadastro:painel :formListagem:painel">
 						<f:attribute name="fabricanteSelecionado" value="#{fabricanteCursor}"/>
-					</p:commandButton>				
+						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+					</p:commandButton>			
 				</p:column>
 				
 			</p:dataTable>
@@ -52,8 +55,9 @@
 									resizable="false" modal="true" closable="false">
 		<h:form id="formCadastro">
 			<h:panelGrid id="painel">
-				<p:outputLabel value="Descrição:" />
-				<p:inputText maxlength="50" size="30" value="#{fabricanteBean.fabricante.descricao}" />
+				<p:outputLabel for="descricao" value="Descrição:" />
+				<p:inputText id="descricao" maxlength="50" size="30" value="#{fabricanteBean.fabricante.descricao}"
+					required="true" requiredMessage="O campo 'Descrição' é obrigatório" />
 			</h:panelGrid>
 			
 			<h:panelGrid columns="2">

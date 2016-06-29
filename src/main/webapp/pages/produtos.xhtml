@@ -10,17 +10,34 @@
 </h:head>
 <h:body>
 	<h:form>
+	  <p:growl id="mensagem"/>  
+	
 		<p:panel h:header="Produtos - Listagem">
 			<p:dataTable emptyMessage="Nenhum registro encontrado."
-				paginator="true">
+				paginator="true" value="#{produtoBean.produtos}" var="produtoCursor" rows="5">
 				<f:facet name="header">
 					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();" />
 				</f:facet>
-				<p:column headerText="Descrição"></p:column>
-				<p:column headerText="Quantidade"></p:column>
-				<p:column headerText="Preço"></p:column>
-				<p:column headerText="Fabricante"></p:column>
-				<p:column headerText="Opções"></p:column>
+				<p:column headerText="Descrição" filterBy="#{produtoCursor.descricao}">
+					<h:outputText value="#{produtoCursor.descricao}"/>
+				</p:column>
+				
+				<p:column headerText="Quantidade" sortBy="#{produtoCursor.quantidade}">
+					<h:outputText value="#{produtoCursor.quantidade}"/>
+				</p:column>
+				
+				<p:column headerText="Preço" sortBy="#{produtoCursor.preco}">
+					<h:outputText value="#{produtoCursor.preco}"/>
+				</p:column>
+				
+				<p:column headerText="Fabricante" sortBy="#{produtoCursor.fabricante.descricao}" 
+					filterBy="#{produtoCursor.fabricante.descricao}" >
+					<h:outputText value="#{produtoCursor.fabricante.descricao}"/>
+				</p:column>
+				
+				<p:column headerText="Opções">
+				</p:column>
+				
 			</p:dataTable>
 		</p:panel>	
 	</h:form>

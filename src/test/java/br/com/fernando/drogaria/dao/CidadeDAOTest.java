@@ -74,4 +74,17 @@ public class CidadeDAOTest {
 		
 		cidadeDAO.editar(cidade);
 	}
+	
+	@Test
+	@Ignore
+	public void buscarPorEstado(){
+		Long estadoCodigo = 3L;
+		CidadeDAO cidadeDAO = new CidadeDAO();
+		List<Cidade> resultado = cidadeDAO.buscarPorEstado(estadoCodigo);
+		
+		for (Cidade cidade : resultado) {
+			System.out.println("Codigo: " + cidade.getCodigo() + ", Nome: " + cidade.getNome()
+			+ ", Estado: " + cidade.getEstado().getSigla());
+		}
+	}
 }

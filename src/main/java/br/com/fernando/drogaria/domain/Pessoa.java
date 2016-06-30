@@ -26,7 +26,7 @@ public class Pessoa extends GenericDomain {
 	@Column(length = 30, nullable = false)
 	private String bairro;
 	
-	@Column(length = 10, nullable = false)
+	@Column(length = 9, nullable = false)
 	private String cep;
 	
 	@Column(length = 10)

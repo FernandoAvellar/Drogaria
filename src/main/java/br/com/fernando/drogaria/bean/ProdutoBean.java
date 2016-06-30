@@ -60,7 +60,7 @@ public class ProdutoBean implements Serializable {
 	public void novo(){
 		try{
 			produto = new Produto();
-			fabricantes = new FabricanteDAO().listar();
+			fabricantes = new FabricanteDAO().listar("descricao");
 		} catch (RuntimeException erro) {
 			Messages.addFlashGlobalError("Ocorreu um erro ao tentar gerar um novo fabricante");
 			erro.printStackTrace();

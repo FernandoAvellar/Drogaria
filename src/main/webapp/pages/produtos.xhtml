@@ -23,7 +23,7 @@
 					</p:commandButton>
 				</f:facet>
 				
-				<p:column headerText="Descrição" filterBy="#{produtoCursor.descricao}">
+				<p:column headerText="Descrição" filterBy="#{produtoCursor.descricao}" sortBy="#{produtoCursor.descricao}">
 					<h:outputText value="#{produtoCursor.descricao}"/>
 				</p:column>
 				

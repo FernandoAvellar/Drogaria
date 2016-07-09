@@ -71,11 +71,11 @@
 					required="true" requiredMessage="O campo 'Nome' é obrigatório" />
 			
 				<p:outputLabel for="cpf" value="CPF" />
-				<p:inputMask id="cpf" mask="999.999.999-99" size="10" value="#{pessoaBean.pessoa.cpf}"
+				<p:inputMask id="cpf" mask="999.999.999-99" size="15" value="#{pessoaBean.pessoa.cpf}"
 				required="true" requiredMessage="O campo 'CPF' é obrigatório" />
 				
 				<p:outputLabel for="rg" value="RG:" />
-				<p:inputText id="rg" maxlength="12" size="20" value="#{pessoaBean.pessoa.rg}"
+				<p:inputText id="rg" maxlength="12" size="15" value="#{pessoaBean.pessoa.rg}"
 				required="true" requiredMessage="O campo 'RG' é obrigatório" />
 				
 				<p:outputLabel for="rua" value="Rua:" />
@@ -87,7 +87,7 @@
 				required="true" requiredMessage="O campo 'Numero' é obrigatório"/>
 				
 				<p:outputLabel value="Complemento:" />
-				<p:inputText maxlength="10" size="20" value="#{pessoaBean.pessoa.complemento}"/>
+				<p:inputText maxlength="10" size="10" value="#{pessoaBean.pessoa.complemento}"/>
 				
 				<p:outputLabel for="bairro" value="Bairro:" />
 				<p:inputText id="bairro" maxlength="30" size="20" value="#{pessoaBean.pessoa.bairro}"

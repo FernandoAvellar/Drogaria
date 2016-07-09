@@ -9,42 +9,66 @@
 	<title>Clientes</title>
 </h:head>
 <h:body>
-	<h:form>
-		<p:panel h:header="Clientes - Listagem">
+	<p:growl id="mensagem" />
+	<h:form id="formListagem">
+		<p:panel id="painel" h:header="Clientes - Listagem">
 			<p:dataTable emptyMessage="Nenhum registro encontrado."
-				paginator="true">
+				paginator="true" value="#{clienteBean.clientes}" var="cursorCliente"
+				rows="5">
 				<f:facet name="header">
-					<p:commandButton value="Novo" oncomplete="PF('dialogo').show();" />
+					<p:commandButton value="Novo" actionListener="#{clienteBean.novo}"
+						oncomplete="PF('dialogo').show();"
+						update=":mensagem :formCadastro:painel :formListagem:painel">
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+					</p:commandButton>
 				</f:facet>
-				<p:column headerText="Nome"></p:column>
-				<p:column headerText="CPF"></p:column>
-				<p:column headerText="Data de Cadastro"></p:column>
-				<p:column headerText="Liberado"></p:column>
-				<p:column headerText="Opções"></p:column>
+
+				<p:column headerText="Nome">
+					<h:outputText value="#{cursorCliente.pessoa.nome}" />
+				</p:column>
+
+				<p:column headerText="CPF">
+					<h:outputText value="#{cursorCliente.pessoa.cpf}" />
+				</p:column>
+
+				<p:column headerText="Data de Cadastro">
+					<h:outputText value="#{cursorCliente.dataCadastro}">
+						<f:convertDateTime locale="pt_BR" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Liberado">
+					<p:selectBooleanCheckbox value="#{cursorCliente.liberado}"
+						disabled="true" />
+				</p:column>
+
+				<p:column headerText="Opções">
+				</p:column>
 			</p:dataTable>
-		</p:panel>	
+		</p:panel>
 	</h:form>
-	
-	<p:dialog header="Clientes - Cadastro" widgetVar="dialogo" draggable="false" 
-								resizable="false" modal="true" closable="false">
-		<h:form>
-			<h:panelGrid columns="2">
+
+	<p:dialog header="Clientes - Cadastro" widgetVar="dialogo"
+		draggable="false" resizable="false" modal="true" closable="false">
+		<h:form id="formCadastro">
+			<h:panelGrid id="painel" columns="2">
 				<p:outputLabel value="Pessoa" />
 				<p:selectOneMenu filter="true">
-					<f:selectItem itemValue="" itemLabel="Selecione uma pessoa"/>
+					<f:selectItem itemValue="" itemLabel="Selecione uma pessoa" />
 				</p:selectOneMenu>
-					
+
 				<p:outputLabel value="Data de cadastro" />
-				<p:calendar/>
-				
+				<p:calendar />
+
 				<p:outputLabel value="Ativo:" />
-				<p:selectBooleanCheckbox />	
+				<p:selectBooleanCheckbox />
 			</h:panelGrid>
-					
+
 			<h:panelGrid columns="2">
 				<p:commandButton value="Salvar" />
 				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
-			</h:panelGrid>		
+			</h:panelGrid>
 		</h:form>
 	</p:dialog>
 </h:body>

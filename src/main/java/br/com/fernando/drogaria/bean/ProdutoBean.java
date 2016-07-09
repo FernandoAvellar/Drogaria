@@ -97,6 +97,7 @@ public class ProdutoBean implements Serializable {
 		 try {		 
 			 produto = (Produto) evento.getComponent().getAttributes().get("produtoSelecionado");
 			 produtos = new ProdutoDAO().listar();
+			 fabricantes = new FabricanteDAO().listar("descricao");
 		} catch (RuntimeException erro) {
 			Messages.addFlashGlobalError("Ocorreu um erro ao tentar selecionar um produto");
 			erro.printStackTrace();

@@ -14,7 +14,7 @@ public class ClienteDAOTest {
 		Cliente cliente = new Cliente();
 		cliente.setDataCadastro(new Date());
 		cliente.setLiberado(true);
-		cliente.setPessoa(new PessoaDAO().buscar(1L));
+		cliente.setPessoa(new PessoaDAO().buscar(2L));
 		
 		new ClienteDAO().salvar(cliente);
 	}

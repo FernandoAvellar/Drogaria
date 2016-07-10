@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.ActionEvent;
 
 import org.omnifaces.util.Messages;
 
@@ -38,6 +39,15 @@ public class ClienteBean implements Serializable {
 		this.cliente = cliente;
 	}
 	
+	public List<Pessoa> getPessoas() {
+		return pessoas;
+	}
+	public void setPessoas(List<Pessoa> pessoas) {
+		this.pessoas = pessoas;
+	}
+	
+	
+	
 	@PostConstruct 
 	public void listar() {
 		try {
@@ -49,13 +59,7 @@ public class ClienteBean implements Serializable {
 			erro.printStackTrace();
 		}
 	}
-	public List<Pessoa> getPessoas() {
-		return pessoas;
-	}
-	public void setPessoas(List<Pessoa> pessoas) {
-		this.pessoas = pessoas;
-	}
-	
+
 	public void novo(){
 		try{
 		cliente = new Cliente();
@@ -65,6 +69,43 @@ public class ClienteBean implements Serializable {
 			Messages.addGlobalError("Ocorreu um erro ao listar os clientes");
 			erro.printStackTrace();
 		}
+	}
+	
+	public void salvar(){
+		try {
+			new ClienteDAO().merge(cliente);
+			listar();
+			novo();
+			Messages.addFlashGlobalInfo("Cliente salvo com sucesso");
+			
+		} catch (RuntimeException erro) {
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar salvar o cliente");
+			erro.printStackTrace();
+		}
+	}
+	
+	public void excluir(ActionEvent evento){
+		cliente = (Cliente) evento.getComponent().getAttributes().get("clienteSelecionado");
+		try {
+			new ClienteDAO().excluir(cliente);
+			listar();
+			Messages.addGlobalInfo("Cliente excluído com sucesso");
+			
+		} catch (RuntimeException erro) {
+			Messages.addGlobalError("Ocorreu um erro ao excluir o cliente");
+			erro.printStackTrace();
+		}	
+	}	
+	
+	public void editar(ActionEvent evento){
+		 try {		 
+			 cliente = (Cliente) evento.getComponent().getAttributes().get("clienteSelecionado");
+			 clientes = new ClienteDAO().listar("dataCadastro");
+			 pessoas = new PessoaDAO().listar("nome");
+		} catch (RuntimeException erro) {
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar selecionar um cliente");
+			erro.printStackTrace();
+		}	
 	}
 
 

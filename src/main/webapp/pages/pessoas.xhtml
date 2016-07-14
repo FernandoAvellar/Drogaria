@@ -38,6 +38,11 @@
 					</h:outputText>
 				</p:column>
 				
+				<p:column headerText="Cidade / Estado" sortBy="#{pessoaCursor.cidade.estado.sigla}">
+					<h:outputText value="#{pessoaCursor.cidade.nome} / #{pessoaCursor.cidade.estado.sigla}">
+					</h:outputText>
+				</p:column>
+				
 				<p:column headerText="Opções">
 					<p:commandButton icon="ui-icon-trash" actionListener="#{pessoaBean.excluir}" update=":mensagem :formListagem:painel">
 						<p:confirm header="Confirmação" message="Deseja excluir a pessoa?" icon="ui-icon-alert"/>

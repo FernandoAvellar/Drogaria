@@ -27,6 +27,17 @@
 		</plugins>
 	</build>
 
+	<!-- Repositórios -->
+	<repositories>
+		<!-- Primefaces -->
+		<repository>
+			<id>prime-repo</id>
+			<name>PrimeFaces Maven Repository</name>
+			<url>http://repository.primefaces.org</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
+
 	<!-- Dependências -->
 	<dependencies>
 		<!-- Hibernate Core -->
@@ -59,13 +70,19 @@
 			<artifactId>primefaces</artifactId>
 			<version>5.2</version>
 		</dependency>
+		<!-- Primefaces Themes all-in-one package -->
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>all-themes</artifactId>
+			<version>1.0.10</version>
+		</dependency>
 		<!-- Omnifaces -->
 		<dependency>
 			<groupId>org.omnifaces</groupId>
 			<artifactId>omnifaces</artifactId>
 			<version>1.11</version>
 		</dependency>
-		<!-- Servlet-->
+		<!-- Servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>

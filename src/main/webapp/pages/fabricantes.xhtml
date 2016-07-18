@@ -79,7 +79,7 @@
 			
 			<h:panelGrid columns="2">
 				<p:commandButton value="Salvar" actionListener="#{fabricanteBean.salvar_editando}" 
-				update=":mensagem :formCadastro:painel :formListagem:painel"  />
+				update=":mensagem :formCadastro:painel :formListagem:painel :formEditar:painel"  />
 				<p:commandButton value="Fechar" oncomplete="PF('dialogo_editar').hide();" />
 			</h:panelGrid>		
 		</h:form>

@@ -78,6 +78,7 @@ public class FabricanteBean implements Serializable {
 			
 			//Implementando o salvar com serviço rest, desacoplando o front-end
 			
+			//Salvar
 			Client cliente = ClientBuilder.newClient();
 			WebTarget caminho = cliente.target("http://127.0.0.1:8080/Drogaria/rest/fabricante");
 			Gson gson = new Gson();

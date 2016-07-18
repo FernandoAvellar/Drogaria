@@ -14,7 +14,7 @@
 	<h:form id="formListagem">  
 		<p:panel id="painel" h:header="Produtos - Listagem">
 			<p:dataTable emptyMessage="Nenhum registro encontrado."
-				paginator="true" value="#{produtoBean.produtos}" var="produtoCursor" rows="5">
+				paginator="true" value="#{produtoBean.produtos}" var="produtoCursor" rows="10">
 				<f:facet name="header">
 				
 					<p:commandButton value="Novo" actionListener="#{produtoBean.novo}" oncomplete="PF('dialogo').show();"

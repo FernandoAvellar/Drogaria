@@ -35,7 +35,7 @@
 					</p:commandButton>
 					
 					<p:commandButton icon="ui-icon-pencil" actionListener="#{fabricanteBean.editar}"
-							oncomplete="PF('dialogo').show();" update=" :formCadastro:painel :formListagem:painel">
+							oncomplete="PF('dialogo_editar').show();" update=" :formCadastro:painel :formEditar:painel">
 						<f:attribute name="fabricanteSelecionado" value="#{fabricanteCursor}"/>
 						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 					</p:commandButton>			
@@ -67,5 +67,23 @@
 			</h:panelGrid>		
 		</h:form>
 	</p:dialog>
+	
+	<p:dialog header="Fabricantes - Edição" widgetVar="dialogo_editar" draggable="false" 
+									resizable="false" modal="true" closable="false">
+		<h:form id="formEditar">
+			<h:panelGrid id="painel">
+				<p:outputLabel for="descricao" value="Descrição:" />
+				<p:inputText id="descricao" maxlength="50" size="30" value="#{fabricanteBean.fabricante.descricao}"
+					required="true" requiredMessage="O campo 'Descrição' é obrigatório" />
+			</h:panelGrid>
+			
+			<h:panelGrid columns="2">
+				<p:commandButton value="Salvar" actionListener="#{fabricanteBean.salvar_editando}" 
+				update=":mensagem :formCadastro:painel :formListagem:painel"  />
+				<p:commandButton value="Fechar" oncomplete="PF('dialogo_editar').hide();" />
+			</h:panelGrid>		
+		</h:form>
+	</p:dialog>
+	
 </h:body>
 </html>

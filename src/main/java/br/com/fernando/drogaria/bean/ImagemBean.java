@@ -13,6 +13,8 @@ import javax.faces.bean.RequestScoped;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
+import br.com.fernando.drogaria.util.OsDetectionUtil;
+
 //Criado pra possibilitar a exibição da foto, como criamos e mostramos tudo no mesmo local existe um BUG se não separarmos os BEAN
 
 @ManagedBean
@@ -23,6 +25,8 @@ public class ImagemBean {
 	private String caminho;
 	
 	private StreamedContent foto;
+	
+	private static final String DIRETORIO_IMAGENS_UPLOAD = OsDetectionUtil.configuraCaminhoDiretorio();
 	
 	
 	public String getCaminho() {
@@ -35,7 +39,7 @@ public class ImagemBean {
 	
 	public StreamedContent getFoto() throws IOException {
 		if(caminho == null || caminho.isEmpty()){
-			Path path = Paths.get("C:/Users/fernando.avellar/workspace/Drogaria/Drogaria/uploads/branco.png");
+			Path path = Paths.get(DIRETORIO_IMAGENS_UPLOAD);
 			InputStream stream = Files.newInputStream(path);
 			foto = new DefaultStreamedContent(stream);
 		}else {

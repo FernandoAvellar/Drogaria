@@ -20,6 +20,7 @@ import br.com.fernando.drogaria.dao.FabricanteDAO;
 import br.com.fernando.drogaria.dao.ProdutoDAO;
 import br.com.fernando.drogaria.domain.Fabricante;
 import br.com.fernando.drogaria.domain.Produto;
+import br.com.fernando.drogaria.util.OsDetectionUtil;
 
 
 @SuppressWarnings("serial")
@@ -27,7 +28,7 @@ import br.com.fernando.drogaria.domain.Produto;
 @ViewScoped
 public class ProdutoBean implements Serializable {
 	
-	private static final String diretorioParaSalvarAsImagensDosProdutos = "C:/Users/fernando.avellar/workspace/Drogaria/Drogaria/uploads/";
+	private static final String DIRETORIO_IMAGENS_UPLOAD = OsDetectionUtil.configuraCaminhoDiretorio();
 	
 	private Produto produto;
 	private List<Produto> produtos;
@@ -91,7 +92,7 @@ public class ProdutoBean implements Serializable {
 			
 			//Cópia da foto do produto pra area correta
 			Path origem = Paths.get(produto.getCaminho());
-			Path destino = Paths.get(diretorioParaSalvarAsImagensDosProdutos + produtoRetorno.getCodigo() + ".png");
+			Path destino = Paths.get(DIRETORIO_IMAGENS_UPLOAD + produtoRetorno.getCodigo() + ".png");
 			Files.copy(origem, destino, StandardCopyOption.REPLACE_EXISTING);
 			
 			novo();
@@ -113,7 +114,7 @@ public class ProdutoBean implements Serializable {
 			Messages.addGlobalInfo("Produto excluído com sucesso");
 			
 			//Excluir a foto do produto caso ela exista
-			Path arquivo = Paths.get(diretorioParaSalvarAsImagensDosProdutos + produto.getCodigo() + ".png");
+			Path arquivo = Paths.get(DIRETORIO_IMAGENS_UPLOAD + produto.getCodigo() + ".png");
 			Files.deleteIfExists(arquivo);
 			
 		} catch (RuntimeException | IOException erro) {
@@ -125,7 +126,7 @@ public class ProdutoBean implements Serializable {
 	public void editar(ActionEvent evento){
 		 try {		 
 			 produto = (Produto) evento.getComponent().getAttributes().get("produtoSelecionado");
-			 produto.setCaminho(diretorioParaSalvarAsImagensDosProdutos + produto.getCodigo() + ".png");
+			 produto.setCaminho(DIRETORIO_IMAGENS_UPLOAD + produto.getCodigo() + ".png");
 			 produtos = new ProdutoDAO().listar();
 			 fabricantes = new FabricanteDAO().listar("descricao");
 		} catch (RuntimeException erro) {

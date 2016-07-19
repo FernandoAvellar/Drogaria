@@ -2,6 +2,7 @@ package br.com.fernando.drogaria.dao;
 
 import java.math.BigDecimal;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import br.com.fernando.drogaria.domain.ItemVenda;
@@ -9,6 +10,7 @@ import br.com.fernando.drogaria.domain.ItemVenda;
 public class ItemVendaDAOTest {
 	
 	@Test
+	@Ignore
 	public void salvar(){
 		ItemVenda itemVenda = new ItemVenda();
 		itemVenda.setProduto(new ProdutoDAO().buscar(1L));

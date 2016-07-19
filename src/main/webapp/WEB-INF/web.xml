@@ -18,6 +18,13 @@
 		<param-value>afterdark</param-value>
 	</context-param>
 
+	<!-- Definição do mecanismo de Upload (nativo do Servlet) -->
+	<context-param>
+		<param-name>primefaces.UPLOADER</param-name>
+		<param-value>native</param-value>
+	</context-param>
+
+
 	<!-- Configuração do JSF -->
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
